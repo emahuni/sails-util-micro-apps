@@ -7,10 +7,10 @@
   },
   "bundleDependencies": false,
   "contributors": [
-		{
-			"name": "Emmanuel Mahuni",
-			"email": "emahuni@gmail.com"
-		},
+    {
+      "name": "Emmanuel Mahuni",
+      "email": "emahuni@gmail.com"
+    },
     {
       "name": "Leeroy Brun",
       "email": "leeroy.brun@gmail.com"
@@ -47,11 +47,11 @@
     "controllers",
     "services",
     "config",
-		"helpers",
-		"micro-app",
-		"micro-service",
-		"mini",
-		"micro",
+    "helpers",
+    "micro-app",
+    "micro-service",
+    "mini",
+    "micro",
     "policies"
   ],
   "license": "MIT",
@@ -64,5 +64,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
