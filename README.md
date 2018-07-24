@@ -152,7 +152,7 @@ We use [semantic versioning](https://docs.npmjs.com/getting-started/semantic-ver
 
 ### Attributions
 
-hard forked from sails-hook-mvcsloader by:
+hard forked from sails-util-mvcsloader by:
 
 - [Leeroy Brun](https://github.com/leeroybrun)
 - [Jimmy Aumard](https://github.com/jaumard)
@@ -163,6 +163,6 @@ no maintenance so had to redo it for sails 1
 - Add support for loading :
     - Views
     - Assets
-		- Hooks
+    - Hooks
 - Add tests
 - Add Grunt for auto-JSHint & tests

@@ -6,7 +6,7 @@ module.exports = function (sails, hook_dirname) {
         console.log('Warning! The Sails app injected into sails-util-mvcsloader seems invalid.');
     }
 
-		hook_dirname || hook_dirname = path.dirname(module.parent.filename);
+		 hook_dirname = hook_dirname || path.dirname(module.parent.filename);
 
     var Loader = {
 
