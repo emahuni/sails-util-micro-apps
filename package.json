@@ -1,0 +1,68 @@
+{
+  "author": {
+    "name": "Emmanuel Mahuni, Leeroy Brun, Aumard Jimmy"
+  },
+  "bugs": {
+    "url": "https://github.com/emahuni/sails-util-micro-app-loader/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+		{
+			"name": "Emmanuel Mahuni",
+			"email": "emahuni@gmail.com"
+		},
+    {
+      "name": "Leeroy Brun",
+      "email": "leeroy.brun@gmail.com"
+    },
+    {
+      "name": "Aumard Jimmy"
+    }
+  ],
+  "dependencies": {
+    "async": "^0.9.0",
+    "include-all": "^0.1.6",
+    "lodash": "^3.5.0",
+    "sails-build-dictionary": "^0.10.1",
+    "sails-util": "^0.10.6"
+  },
+  "deprecated": false,
+  "description": "Load micro-APP (models, controllers, helpers, services, config and policies) from a hook's directory structure or specified directories and inject them into the main Sails app.",
+  "homepage": "https://github.com/emahuni/sails-util-micro-app-loader",
+  "keywords": [
+    "sails hook loader",
+    "sails plugins system",
+    "plugins",
+    "sails",
+    "sails-hook",
+    "hook",
+    "loader",
+    "mvc",
+    "hook-models",
+    "hook-controllers",
+    "hook-services",
+    "hook-config",
+    "hook-policies",
+    "models",
+    "controllers",
+    "services",
+    "config",
+		"helpers",
+		"micro-app",
+		"micro-service",
+		"mini",
+		"micro",
+    "policies"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "sails-util-micro-app-loader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emahuni/sails-util-micro-app-loader.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.0"
+}
