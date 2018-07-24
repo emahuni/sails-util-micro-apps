@@ -3,7 +3,7 @@
  */
 
 module.exports = function (sails) {
-    var loader = require('sails-util-micro-app-loader')(sails);
+    var loader = require('sails-util-micro-apps')(sails);
 
     // Load policies and config from default directories
     loader.configure();

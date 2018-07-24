@@ -1,6 +1,6 @@
- # sails-util-micro-app-loader
+ # sails-util-micro-apps
 
-[![NPM](https://nodei.co/npm/sails-util-micro-app-loader[21~].png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/sails-micro-app-loader/)
+[![NPM](https://nodei.co/npm/sails-util-micro-apps[21~].png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/sails-micro-apps/)
 
 Load micro-APP (models, controllers, helpers, services, config and policies) from a hook directory structure or specified directories and inject them into the main Sails app. Point the module's loader to an app dir structure and it will load it. This approach allows you to make mini app's that you can reuse in a larger apps, thereby adopting a micro-services architecture.
 
@@ -16,19 +16,19 @@ You have to install it in the project you intend to load the models/controllers/
 Run this command to install and add the package as a dependency in your package.json :
 
 ```
-npm install --save sails-util-micro-app-loader
+npm install --save sails-util-micro-apps
 ```
 
 ## How to use it
 
-You can find a complete hook example in the [example folder](https://github.com/emahuni/sails-util-micro-app-loader/tree/master/example/sails-hook-eg).
+You can find a complete hook example in the [example folder](https://github.com/emahuni/sails-util-micro-apps/tree/master/example/sails-hook-eg).
 
 Using this module is pretty easy.
 
 In your hook's index.js file or whatever module (now referred as parentModule) that intends to inject a micro-APP, require this module (module) and pass your Sails app as first argument ([optional] second argument for the micro app directory (now reffered as microAppRootDir) to use - defaults to: parentModule.__dirname):
 
     module.exports = function(sails) {
-        var loader = require('sails-util-micro-app-loader')(sails, __dirname); // the api dir used here is optional and is the same as the default, this is just to show eg.
+        var loader = require('sails-util-micro-apps')(sails, __dirname); // the api dir used here is optional and is the same as the default, this is just to show eg.
 
         ...
 
@@ -93,7 +93,7 @@ Or like this if you want to load from specific directories:
 Here is a complete example. It's the index.js file of a Sails hook.
 
     module.exports = function(sails) {
-        var loader = require('sails-util-micro-app-loader')(sails);
+        var loader = require('sails-util-micro-apps')(sails);
 
         // Load policies under hook's ./api/policies and config under ./config
         loader.configure();
