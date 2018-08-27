@@ -2,9 +2,12 @@
  * Load models from a directory into a Sails app
  */
 
-var buildDictionary = require('sails-build-dictionary');
+const buildDictionary = require('sails-build-dictionary');
+const con = require('con-fi')();
 
 module.exports = function (sails, dir, cb) {
+		con.log(`dir: %s, cb: %s`, dir, cb );
+		
     buildDictionary.optional({
         dirname: dir,
         filter: /^([^.]+)\.(js|coffee|litcoffee)$/,
@@ -26,7 +29,7 @@ module.exports = function (sails, dir, cb) {
                 return cb(err);
             }
 
-            var finalModels = _.merge(models, supplements);					
+            let finalModels = _.merge(models, supplements);					
 						
             sails.hooks.orm.models = _.merge(finalModels || {}, sails.hooks.orm.models || {});
             sails.models = _.merge(finalModels || {}, sails.models || {});
