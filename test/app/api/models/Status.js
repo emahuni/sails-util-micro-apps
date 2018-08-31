@@ -12,14 +12,14 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-			label: {
-					type: "string",
-			},
-			
-      color: {
-					type: "string",
-					defaultsTo: "brown",
-      },
+    label: {
+      type: "string",
+    },
+
+    color: {
+      type: "string",
+      defaultsTo: "brown",
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -30,10 +30,14 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-      affiliated: {
-          collection: '*',
-      },
-			
+    person_statuses: {
+      model: 'person',
+    },
+
+    house_states: {
+      model: 'house',
+    },
+
   },
 
 };

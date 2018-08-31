@@ -23,7 +23,7 @@ describe('Basic tests ::', function () {
             port: 1300,
             hooks: {
                 // load this hook before sails ORM
-                "beforeORM": require('./sails-hook-before-orm'),
+                // "beforeORM": require('./sails-hook-before-orm'),
                 // load the ORM
                 "orm": require('sails-hook-orm'),
                 // Load this hook after sails ORM

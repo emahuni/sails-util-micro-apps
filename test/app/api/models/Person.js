@@ -6,43 +6,43 @@
  */
 
 module.exports = {
-		attributes: {
+	attributes: {
 
-				//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-				//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-				//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+		//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+		//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+		//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-				firstname: {
-						type: "string",
-						required: true,		
-				},
-				
-				lastname: {
-						type: "string",
-						required: true,
-				},
-
-				dob: {
-						type: "number",
-				},
-
-				//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-				//  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-				//  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-				//  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-				//  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-				//  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
-				statuses: {
-						collection: "status",
-						via: "affiliated",
-				},
-
-				home: {
-						model: "house",
-				},
+		firstname: {
+			type: "string",
+			required: true,
 		},
+
+		lastname: {
+			type: "string",
+			required: true,
+		},
+
+		dob: {
+			type: "number",
+		},
+
+		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
+		//  ║╣ ║║║╠╩╗║╣  ║║╚═╗
+		//  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
+
+
+		//  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+		//  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+		//  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
+		statuses: {
+			collection: "status",
+			via: "person_statuses",
+		},
+
+		home: {
+			model: "house",
+		},
+	},
 };
 
