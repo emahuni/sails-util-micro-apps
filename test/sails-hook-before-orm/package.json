@@ -1,7 +1,7 @@
 {
-  "name": "sails-hook-eg",
+  "name": "sails-hook-before-orm",
   "version": "0.1.0",
-  "description": "Hook example for sails-util-micro-apps",
+  "description": "Test Hook for sails-util-micro-apps loading before orm",
   "main": "index.js",
   "author": "Emmanuel Mahuni",
   "keywords": [
@@ -12,10 +12,6 @@
     "mvc",
     "hook"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/emahuni/sails-hook-eg"
-  },
   "dependencies": {
     "sails": "~1.0.2",
     "sails-util-micro-apps": "file:../.."

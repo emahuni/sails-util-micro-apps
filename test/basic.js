@@ -23,15 +23,15 @@ describe('Basic tests ::', function () {
             port: 1300,
             hooks: {
                 // load this hook before sails ORM
-                "egBeforeORM": require('./sails-hook-before-orm'),
+                "beforeORM": require('./sails-hook-before-orm'),
                 // load the ORM
                 "orm": require('sails-hook-orm'),
                 // Load this hook after sails ORM
-                "egAfterORM": require('./sails-hook-after-orm'),
+                "afterORM": require('./sails-hook-after-orm'),
             },
             log: {
-                level: 'trace',
-                custom: con,
+                level: 'silly',
+                // custom: con,
                 // inspect: false,
             },
 
