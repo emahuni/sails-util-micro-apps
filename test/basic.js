@@ -22,9 +22,12 @@ describe('Basic tests ::', function () {
         Sails().load({
             port: 1300,
             hooks: {
+                // load this hook before sails ORM
+                "egBeforeORM": require('./sails-hook-before-orm'),
+                // load the ORM
                 "orm": require('sails-hook-orm'),
-                // Load the hook before sails orm
-                "eg": require('./sails-hook-eg'),
+                // Load this hook after sails ORM
+                "egAfterORM": require('./sails-hook-after-orm'),
             },
             log: {
                 level: 'trace',

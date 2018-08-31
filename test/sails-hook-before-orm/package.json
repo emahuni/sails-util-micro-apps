@@ -1,0 +1,26 @@
+{
+  "name": "sails-hook-eg",
+  "version": "0.1.0",
+  "description": "Hook example for sails-util-micro-apps",
+  "main": "index.js",
+  "author": "Emmanuel Mahuni",
+  "keywords": [
+    "sails",
+    "sails.js",
+    "sails-hook",
+    "loader",
+    "mvc",
+    "hook"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emahuni/sails-hook-eg"
+  },
+  "dependencies": {
+    "sails": "~1.0.2",
+    "sails-util-micro-apps": "file:../.."
+  },
+  "sails": {
+    "isHook": true
+  }
+}
