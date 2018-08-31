@@ -1,42 +1,42 @@
 var async = require('async'), path = require('path');
 
-module.exports = function (sails, hook_dirname) {
+module.exports = function(sails, hook_dirname) {
 
-    if(!sails) {
+    if (!sails) {
         console.log('Warning! The Sails app injected into sails-util-mvcsloader seems invalid.');
     }
 
-		 hook_dirname = hook_dirname || path.dirname(module.parent.filename);
+    hook_dirname = hook_dirname || path.dirname(module.parent.filename);
 
     var Loader = {
 
         defaults: {},
 
-        injectPolicies: function (dir) {
+        injectPolicies: function(dir) {
             require(__dirname + '/libs/policies')(sails, dir);
         },
-        injectConfig: function (dir) {
+        injectConfig: function(dir) {
             require(__dirname + '/libs/config')(sails, dir);
         },
 
-        injectControllers: function (dir, cb) {
+        injectControllers: function(dir, cb) {
             require(__dirname + '/libs/controllers')(sails, dir, cb);
         },
 
-        injectModels: function (dir, cb) {
+        injectModels: function(dir, cb) {
             require(__dirname + '/libs/models')(sails, dir, cb);
         },
 
-        injectServices: function (dir, cb) {
+        injectServices: function(dir, cb) {
             require(__dirname + '/libs/services')(sails, dir, cb);
         },
-				
-        injectHelpers: function (dir, cb) {
+
+        injectHelpers: function(dir, cb) {
             require(__dirname + '/libs/helpers')(sails, dir, cb);
         },
 
         // Inject config and policies synchronously into the Sails app
-        configure: function (dir) {
+        configure: function(dir) {
             if (!dir) {
                 dir = {
                     config: hook_dirname + '/config',
@@ -47,41 +47,41 @@ module.exports = function (sails, hook_dirname) {
         },
 
         // Inject models, controllers & services asynchronously into the Sails app
-        inject: function (dir, next) {
-						sails.log.debug('hook dirname: ',hook_dirname);
+        inject: function(dir, next) {
+            sails.log.debug('hook dirname: ', hook_dirname);
             // No parameters or only a callback (function) as first parameter
-            if((typeof dir === 'function' || !dir) && !next) {
+            if ((typeof dir === 'function' || !dir) && !next) {
                 var tmp = next;
-                next = dir || function(){};
+                next = dir || function() {};
                 dir = tmp || {
-										models: hook_dirname + '/api/models',
+                    models: hook_dirname + '/api/models',
                     controllers: hook_dirname + '/api/controllers',
                     helpers: hook_dirname + '/api/helpers',
                     services: hook_dirname + '/api/services'
 
                 };
             }
-            
+
             // Backward compatibility, next and dir inverted
-            else if(typeof next === 'object' && typeof dir === 'function') {
+            else if (typeof next === 'object' && typeof dir === 'function') {
                 var tmp = next;
                 next = dir;
                 dir = tmp;
             }
-            
+
             // Be sure to have a callback
-            next = next || function(){};
+            next = next || function() {};
 
             this.injectAll(dir, next);
         },
 
-        injectAll: function (dir, cb) {
-            cb = cb || function(){};
+        injectAll: function(dir, cb) {
+            cb = cb || function() {};
 
             var self = this;
 
-            var loadModels = function (next) {
-                self.injectModels(dir.models, function (err) {
+            var loadModels = function(next) {
+                self.injectModels(dir.models, function(err) {
                     if (err) {
                         return next(err);
                     }
@@ -90,8 +90,8 @@ module.exports = function (sails, hook_dirname) {
                 });
             };
 
-            var loadControllers = function (next) {
-                self.injectControllers(dir.controllers, function (err) {
+            var loadControllers = function(next) {
+                self.injectControllers(dir.controllers, function(err) {
                     if (err) {
                         return next(err);
                     }
@@ -102,8 +102,8 @@ module.exports = function (sails, hook_dirname) {
                 });
             };
 
-            var loadHelpers = function (next) {
-                self.injectHelpers(dir.helpers, function (err) {
+            var loadHelpers = function(next) {
+                self.injectHelpers(dir.helpers, function(err) {
                     if (err) {
                         return next(err);
                     }
@@ -112,8 +112,8 @@ module.exports = function (sails, hook_dirname) {
                 });
             };
 
-            var loadServices = function (next) {
-                self.injectServices(dir.services, function (err) {
+            var loadServices = function(next) {
+                self.injectServices(dir.services, function(err) {
                     if (err) {
                         return next(err);
                     }
@@ -150,7 +150,7 @@ module.exports = function (sails, hook_dirname) {
                 toLoad.push(loadServices);
             }
 
-            async.parallel(toLoad, function (err) {
+            async.parallel(toLoad, function(err) {
                 if (err) {
                     sails.log.error(err);
                 }
