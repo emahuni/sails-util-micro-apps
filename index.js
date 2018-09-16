@@ -1,12 +1,19 @@
-var async = require('async'), path = require('path');
+var async = require('async'), path = require('path'), util = require('util');
+
+const decache = require('decache');
+
 
 module.exports = function(sails, hook_dirname) {
+
+		// make sure we don't cache this module, caching is preventing hook_dirname detection from working properly
+		decache(module.id);
 
     if (!sails) {
         console.error('Warning! The Sails app injected into sails-util-micro-apps seems invalid.');
     }
 
     hook_dirname = hook_dirname || path.dirname(module.parent.filename);
+		// sails.log.debug('module details: ', util.inspect(module));
 
     var Loader = {
 
