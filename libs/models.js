@@ -3,11 +3,10 @@
  */
 
 const buildDictionary = require('sails-build-dictionary');
-const con = require('contra')();
 
 module.exports = function(sails, dir, cb) {
-    // con.info(`dir: %s, cb: %s`, dir, cb);
-    // con.info(`sails models: `, sails);
+    sails.log.info(`dir: %s, cb: %s`, dir, cb);
+    sails.log.info(`sails models: `, sails.models);
 
     buildDictionary.optional({
         dirname: dir,

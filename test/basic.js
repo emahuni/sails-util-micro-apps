@@ -22,6 +22,11 @@ describe('Basic tests ::', function () {
         // Attempt to lift sails
         Sails().load({
             port: 1300,
+            log: {
+                level: 'silly',
+                custom: console,
+                inspect: false,
+            },
             hooks: {
                 // load this hook before sails ORM
                 "beforeORM": require('./sails-hook-before-orm'),
@@ -29,11 +34,6 @@ describe('Basic tests ::', function () {
                 "orm": require('sails-hook-orm'),
                 // Load this hook after sails ORM
                 "afterORM": require('./sails-hook-after-orm'),
-            },
-            log: {
-                level: 'silly',
-                custom: console,
-                inspect: true,
             },
 
             models: {

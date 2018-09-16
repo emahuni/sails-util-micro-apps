@@ -3,7 +3,7 @@ var async = require('async'), path = require('path');
 module.exports = function(sails, hook_dirname) {
 
     if (!sails) {
-        console.log('Warning! The Sails app injected into sails-util-mvcsloader seems invalid.');
+        console.error('Warning! The Sails app injected into sails-util-micro-apps seems invalid.');
     }
 
     hook_dirname = hook_dirname || path.dirname(module.parent.filename);
