@@ -3,7 +3,7 @@
  */
 
 module.exports = function (sails) {
-    var loader = require('../../')(sails);
+    var loader = require('../../')(sails, __dirname);
 
     // Load policies and config from default directories
     loader.configure();
