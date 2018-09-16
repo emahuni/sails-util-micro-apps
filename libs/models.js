@@ -5,8 +5,8 @@
 const buildDictionary = require('sails-build-dictionary');
 
 module.exports = function(sails, dir, cb) {
-    sails.log.info(`dir: %s, cb: %s`, dir, cb);
-    sails.log.info(`sails models: `, sails.models);
+    // sails.log.info(`dir: %s, cb: %s`, dir, cb);
+    // sails.log.info(`sails models: `, sails.models);
 
     buildDictionary.optional({
         dirname: dir,
