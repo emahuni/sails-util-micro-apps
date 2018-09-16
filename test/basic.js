@@ -3,8 +3,9 @@ const chai = require('chai');
 const expect = chai.expect;
 const nodeUtil = require('util');
 const chalk = require('chalk');
-const con = require('contra')({
-    stackIndex: 1
+const console = require('contrace')({
+    stackIndex: 1,
+    methods: [ 'silly', 'verbose', 'info', 'debug', 'warn', 'error' ],
 });
 
 let __line = new require('lineno')(__filename).get;
@@ -23,7 +24,7 @@ describe('Basic tests ::', function () {
             port: 1300,
             hooks: {
                 // load this hook before sails ORM
-                // "beforeORM": require('./sails-hook-before-orm'),
+                "beforeORM": require('./sails-hook-before-orm'),
                 // load the ORM
                 "orm": require('sails-hook-orm'),
                 // Load this hook after sails ORM
@@ -31,8 +32,8 @@ describe('Basic tests ::', function () {
             },
             log: {
                 level: 'silly',
-                // custom: con,
-                // inspect: false,
+                custom: console,
+                inspect: true,
             },
 
             models: {
@@ -46,7 +47,7 @@ describe('Basic tests ::', function () {
             global.log = sails.log;
             // log =  console;
 
-            log('models: %o', sails.models);
+            // log('models: %o', sails.models);
             return done();
         });
     });
