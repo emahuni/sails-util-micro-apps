@@ -9,5 +9,7 @@ module.exports = {
      */
     runtimeServiceTest: function (req, res) {
         sails.log.info('test method on RuntimeService');
+
+				return true;
     }
 };

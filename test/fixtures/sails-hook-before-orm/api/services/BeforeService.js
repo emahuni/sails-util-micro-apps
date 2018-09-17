@@ -9,5 +9,7 @@ module.exports = {
      */
     beforeServiceTest: function (req, res) {
         sails.log.info('test method on BeforeService');
+
+				return true;
     }
 };
