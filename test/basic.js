@@ -68,84 +68,30 @@ describe('Basic tests ::', function () {
         return true;
     });
 
-    context(' ::', async function () {
-        let people, houses, statuses, sharedResults;
+    context('Models Injection ::', async function () {
+				it(`successfully injected Before model`, async function (){
+						expect(sails.models.before).to.be.an('object');
+				});
 
-        before('load seeds', async function () {
-            // Great care should be taken when altering the seeds, tests are highly dependant on them.
-            // If altered, all passing tests should pass as they did before the alteration.
+				it(`can use Before model (create, find, update, delete)`, async function (){
+						await Before.createEach([
+								{
+										name: 'before 1'
+								},
+								{
+										name: 'before 2'
+								},
+								{
+										name: 'before 3'
+								},
+						]);
+						let befores = await Before.find();
 
-            // create people
-            people = await Person.createEach([{
-                id: 1,
-                firstname: 'Tendai',
-                lastname: 'Mahobho'
-            },
-            {
-                id: 2,
-                firstname: 'Boydho',
-                lastname: 'Zugo'
-            },
-            {
-                id: 3,
-                firstname: 'Nyarai',
-                lastname: 'Chengetwa'
-            }, // this is the only one who is homeless :D
-            {
-                id: 4,
-                firstname: 'Pericle',
-                lastname: 'Ncube'
-            },
-            ]).fetch();
+						expect(befores).to.be.an('array').with.lengthOf(3);
+						expect(befores[1].name).to.be.eql('before 2');
 
-            // create houses
-            houses = await House.createEach([{
-                id: 1,
-                address: '11055 St Mary\'s'
-            },
-            {
-                id: 2,
-                address: '2123 Gaydon Borrowdale'
-            },
-            {
-                id: 3,
-                address: '15 Chaza Harare'
-            }, // only one without anybody home
-            {
-                id: 4,
-                address: '1443 Murombedzi'
-            },
-            ]).fetch();
 
-            // create statuses
-            statuses = await Status.createEach([{
-                id: 1,
-                label: 'Dead',
-                color: 'yellow'
-            },
-            {
-                id: 2,
-                label: 'Inactive',
-                color: 'black'
-            },
-            {
-                id: 3,
-                label: 'Zero',
-                color: 'white'
-            },
-            {
-                id: 4,
-                label: 'Full',
-                color: 'blue'
-            },
-            {
-                id: 5,
-                label: 'Dangerous',
-                color: 'red'
-            }, // unused
-            ]).fetch();
-        });
-
+				});
 
     });
 });
