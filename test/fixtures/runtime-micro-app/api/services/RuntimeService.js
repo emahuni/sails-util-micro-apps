@@ -8,7 +8,7 @@ module.exports = {
      * @param res
      */
     runtimeServiceTest: function (req, res) {
-        sails.log.info('test method on RuntimeService');
+        sails.log.verbose('test method on RuntimeService');
 
 				return true;
     }

@@ -20,7 +20,7 @@ module.exports = {
 
 
 		fn: async function (inputs, exits) {
-				sails.log.info('afterHelperTest works!');
+				sails.log.verbose('afterHelperTest works!');
 
 				// All done.
 				return exits.success(true);

@@ -8,6 +8,6 @@ module.exports = {
      * @param res
      */
     runtimeCtrlTest: function (req, res) {
-        sails.log.info('test method on RuntimeController');
+        sails.log.verbose('test method on RuntimeController');
     }
 };

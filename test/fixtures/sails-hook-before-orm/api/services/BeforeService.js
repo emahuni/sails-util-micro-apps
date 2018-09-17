@@ -8,7 +8,7 @@ module.exports = {
      * @param res
      */
     beforeServiceTest: function (req, res) {
-        sails.log.info('test method on BeforeService');
+        sails.log.verbose('test method on BeforeService');
 
 				return true;
     }

@@ -26,7 +26,7 @@ before(function (done) {
     Sails().load({
         port: 1300,
         log: {
-            level: 'silly',
+            level: 'debug',
             custom: console,
             inspect: false,
         },
@@ -61,7 +61,7 @@ after(function (done) {
     if (sails) {
 				// sails.log.debug('models:', util.inspect(sails.models));
 				// sails.log.debug('helpers:', sails.helpers);
-				sails.log.debug('services:', sails.services);
+				// sails.log.debug('services:', sails.services);
         return sails.lower(done);
     }
 
