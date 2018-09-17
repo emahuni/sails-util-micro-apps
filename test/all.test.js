@@ -12,6 +12,10 @@ const console = require('contrace')({
 
 let __line = new require('lineno')(__filename).get;
 
+
+const testMicroApp = require('./helpers/test-micro-app');
+
+
 describe('Sails-hook-micro-apps Hook tests #', function () {
     // Before running any tests, attempt to lift Sails
     before(function (done) {
@@ -72,48 +76,7 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
 
     context('Models Injection ::', async function () {
 				testMicroApp('before');
+				testMicroApp('after');
     });
 
-		async function testMicroApp (mApp) {
-				let mAppModel, mAppModelName = _.upperFirst(mApp);
-
-				before ( function () {
-						mAppModel = global[mAppModelName]; // the reason why I am plucking this from global is for me to test if it was globalised properly
-				});
-
-				context(`${mAppModelName} model ::`, async function () {
-						it(`successfully injected ${mAppModelName} model`, async function (){
-								expect(sails.models[mApp]).to.be.an('object');
-								expect(mAppModel).to.be.an('object');
-						});
-
-						it(`can (create & find) records`, async function (){
-								for (let i=0; i<3; i++){
-										await mAppModel.create({
-												name: `${mApp} ${i}`
-										});
-								}
-
-								let recs = await mAppModel.find();
-
-								expect(recs).to.be.an('array').with.lengthOf(3);
-								expect(recs[1].name).to.be.eql(`${mApp} 1`);
-						});
-
-						it(`can (update) records`, async function (){
-								let recs = await mAppModel.update({name: `${mApp} 2`}, {name: `${mApp} 2.1`}).fetch();
-
-								expect(recs[0].name).to.be.eql(`${mApp} 2.1`);
-						});
-
-						it(`can (delete) records`, async function (){
-								await mAppModel.destroy({});
-
-								let recs = await mAppModel.find();
-
-								expect(recs).to.be.an('array').with.lengthOf(0);
-						});
-
-				});
-		}
 });
