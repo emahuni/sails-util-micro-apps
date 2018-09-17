@@ -10,7 +10,7 @@ const console = require('contrace')({
 
 let __line = new require('lineno')(__filename).get;
 
-describe('Basic tests ::', function () {
+describe('Sails-hook-micro-apps Hook tests #', function () {
     // Before running any tests, attempt to lift Sails
     before(function (done) {
         // Hook will timeout in 10 seconds
@@ -23,7 +23,7 @@ describe('Basic tests ::', function () {
         Sails().load({
             port: 1300,
             log: {
-                level: 'info',
+                level: 'debug',
                 custom: console,
                 inspect: false,
             },
@@ -71,9 +71,10 @@ describe('Basic tests ::', function () {
     context('Models Injection ::', async function () {
 				it(`successfully injected Before model`, async function (){
 						expect(sails.models.before).to.be.an('object');
+						expect(Before).to.be.an('object');
 				});
 
-				it(`can use Before model (create, find, update, delete)`, async function (){
+				it(`can use Before model (create & find)`, async function (){
 						await Before.createEach([
 								{
 										name: 'before 1'
@@ -89,8 +90,20 @@ describe('Basic tests ::', function () {
 
 						expect(befores).to.be.an('array').with.lengthOf(3);
 						expect(befores[1].name).to.be.eql('before 2');
+				});
 
+				it(`can use Before model (update)`, async function (){
+						let befores = await Before.update({name: 'before 3'}, {name: 'before 3.1'}).fetch();
 
+						expect(befores[0].name).to.be.eql('before 3.1');
+				});
+
+				it(`can use Before model (delete)`, async function (){
+						await Before.destroy({});
+
+						let befores = await Before.find();
+
+						expect(befores).to.be.an('array').with.lengthOf(0);
 				});
 
     });
