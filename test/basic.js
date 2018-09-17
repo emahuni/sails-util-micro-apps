@@ -3,6 +3,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const nodeUtil = require('util');
 const chalk = require('chalk');
+const _ = require('lodash');
+
 const console = require('contrace')({
     stackIndex: 1,
     methods: [ 'silly', 'verbose', 'info', 'debug', 'warn', 'error' ],
@@ -69,42 +71,49 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
     });
 
     context('Models Injection ::', async function () {
-				it(`successfully injected Before model`, async function (){
-						expect(sails.models.before).to.be.an('object');
-						expect(Before).to.be.an('object');
-				});
-
-				it(`can use Before model (create & find)`, async function (){
-						await Before.createEach([
-								{
-										name: 'before 1'
-								},
-								{
-										name: 'before 2'
-								},
-								{
-										name: 'before 3'
-								},
-						]);
-						let befores = await Before.find();
-
-						expect(befores).to.be.an('array').with.lengthOf(3);
-						expect(befores[1].name).to.be.eql('before 2');
-				});
-
-				it(`can use Before model (update)`, async function (){
-						let befores = await Before.update({name: 'before 3'}, {name: 'before 3.1'}).fetch();
-
-						expect(befores[0].name).to.be.eql('before 3.1');
-				});
-
-				it(`can use Before model (delete)`, async function (){
-						await Before.destroy({});
-
-						let befores = await Before.find();
-
-						expect(befores).to.be.an('array').with.lengthOf(0);
-				});
-
+				testMicroApp('before');
     });
+
+		async function testMicroApp (mApp) {
+				let mAppModel, mAppModelName = _.upperFirst(mApp);
+
+				before ( function () {
+						mAppModel = global[mAppModelName]; // the reason why I am plucking this from global is for me to test if it was globalised properly
+				});
+
+				context(`${mAppModelName} model ::`, async function () {
+						it(`successfully injected ${mAppModelName} model`, async function (){
+								expect(sails.models[mApp]).to.be.an('object');
+								expect(mAppModel).to.be.an('object');
+						});
+
+						it(`can (create & find) records`, async function (){
+								for (let i=0; i<3; i++){
+										await mAppModel.create({
+												name: `${mApp} ${i}`
+										});
+								}
+
+								let recs = await mAppModel.find();
+
+								expect(recs).to.be.an('array').with.lengthOf(3);
+								expect(recs[1].name).to.be.eql(`${mApp} 1`);
+						});
+
+						it(`can (update) records`, async function (){
+								let recs = await mAppModel.update({name: `${mApp} 2`}, {name: `${mApp} 2.1`}).fetch();
+
+								expect(recs[0].name).to.be.eql(`${mApp} 2.1`);
+						});
+
+						it(`can (delete) records`, async function (){
+								await mAppModel.destroy({});
+
+								let recs = await mAppModel.find();
+
+								expect(recs).to.be.an('array').with.lengthOf(0);
+						});
+
+				});
+		}
 });
