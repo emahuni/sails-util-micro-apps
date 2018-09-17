@@ -1,36 +1,41 @@
-module.exports = async function testModel (modelName) {
+module.exports = async function testModel (modelName, attr = 'name') {
 		let Model, ModelName = _.upperFirst(modelName);
 
 		before ( function () {
 				Model = global[ModelName]; // the reason why I am plucking this from global is for me to test if it was globalised properly
+				// sails.log.debug(`${modelName}  schema`, Model.schema);
 		});
 
 		context(`${ModelName} model ::`, async function () {
-				it(`successfully injected ${ModelName} model`, async function (){
+				it(`has ${ModelName} model`, async function (){
 						expect(sails.models[modelName]).to.be.an('object');
 						expect(Model).to.be.an('object');
 				});
 
-				it(`can (create & find) records`, async function (){
+				it(`has ${attr} in model`, async function (){
+						expect(Model.schema[`${attr}`]).to.be.ok;
+				});
+
+				it(`can (create & find) records using attrib: ${attr}`, async function (){
 						for (let i=0; i<3; i++){
 								await Model.create({
-										name: `${modelName} ${i}`
+										[attr]: `${modelName} ${i}`
 								});
 						}
 
 						let recs = await Model.find();
 
 						expect(recs).to.be.an('array').with.lengthOf(3);
-						expect(recs[1].name).to.be.eql(`${modelName} 1`);
+						expect(recs[1][attr]).to.be.eql(`${modelName} 1`);
 				});
 
-				it(`can (update) records`, async function (){
-						let recs = await Model.update({name: `${modelName} 2`}, {name: `${modelName} 2.1`}).fetch();
+				it(`can (update) records using attrib: ${attr}`, async function (){
+						let recs = await Model.update({ [attr]: `${modelName} 2` }, { [attr]: `${modelName} 2.1` }).fetch();
 
-						expect(recs[0].name).to.be.eql(`${modelName} 2.1`);
+						expect(recs[0][attr]).to.be.eql(`${modelName} 2.1`);
 				});
 
-				it(`can (delete) records`, async function (){
+				it(`can (delete) records using attrib: ${attr}`, async function (){
 						await Model.destroy({});
 
 						let recs = await Model.find();
