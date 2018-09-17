@@ -8,6 +8,6 @@ module.exports = {
      * @param res
      */
     afterServiceTest: function (req, res) {
-        console.log('test method on AfterService');
+        sails.log.info('test method on AfterService');
     }
 };

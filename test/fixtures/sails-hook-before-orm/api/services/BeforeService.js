@@ -8,6 +8,6 @@ module.exports = {
      * @param res
      */
     beforeServiceTest: function (req, res) {
-        console.log('test method on BeforeService');
+        sails.log.info('test method on BeforeService');
     }
 };

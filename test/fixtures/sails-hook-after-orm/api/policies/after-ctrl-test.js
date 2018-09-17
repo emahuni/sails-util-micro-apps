@@ -2,6 +2,6 @@
  * Created by Emmanuel Mahuni. MIT 2018
  */
 module.exports = function (req, res, next) {
-    console.log('after orm policy test ok');
+    sails.log.info('after orm policy test ok');
     next();
 };

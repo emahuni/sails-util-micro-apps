@@ -8,6 +8,6 @@ module.exports = {
      * @param res
      */
     beforeCtrlTest: function (req, res) {
-        console.log('test method on BeforeController');
+        sails.log.info('test method on BeforeController');
     }
 };
