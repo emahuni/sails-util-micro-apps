@@ -10,8 +10,13 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
     });
 
     context('Models Injection ::', async function () {
-				testMicroApp('Injected using the parent module path', 'before');
-				testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
+				context(`Before ORM Hook - Micro App injection ::`, async function () {
+						testMicroApp('Injected using the parent module path', 'before');
+				});
+
+				context(`After ORM Hook - Micro App injection ::`, async function () {
+						testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
+				});
 
 				context(`Runtime Micro App injection ::`, async function () {
 						before(async function (){
