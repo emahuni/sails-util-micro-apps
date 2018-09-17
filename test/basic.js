@@ -23,7 +23,7 @@ describe('Basic tests ::', function () {
         Sails().load({
             port: 1300,
             log: {
-                level: 'silly',
+                level: 'info',
                 custom: console,
                 inspect: false,
             },

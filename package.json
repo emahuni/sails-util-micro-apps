@@ -16,6 +16,7 @@
     "async": "^0.9.0",
     "con-fi": "file:../con-fi",
     "contrace": "file:../contrace",
+    "decache": "^4.4.0",
     "include-all": "^0.1.6",
     "lodash": "^3.5.0",
     "sails-build-dictionary": "^0.10.1",
