@@ -6,6 +6,8 @@ global.expect = chai.expect;
 global.chalk = require('chalk');
 global._ = require('lodash');
 
+const util = require('util');
+
 const console = require('contrace')({
     stackIndex: 1,
     methods: [ 'silly', 'verbose', 'info', 'debug', 'warn', 'error' ],
@@ -57,6 +59,8 @@ before(function (done) {
 after(function (done) {
     // Lower Sails (if it successfully lifted)
     if (sails) {
+				// sails.log.debug('models:', util.inspect(sails.models));
+				// sails.log.debug('models:', util.inspect(sails.models));
         return sails.lower(done);
     }
 
