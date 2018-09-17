@@ -9,6 +9,6 @@ module.exports = async function testMicroApp (title, mApp) {
 		testModel(title, 'house', `${mApp}Ext`);
 
 		// let's test helpers
-		// testHelper(title, `${mApp}HelperTest`);
-		testHelper(title, `fooBar`);
+		testHelper(title, `${mApp}HelperTest`);
+		// testHelper(title, `fooBar`);
 }

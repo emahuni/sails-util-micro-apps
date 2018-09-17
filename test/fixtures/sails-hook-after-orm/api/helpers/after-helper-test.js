@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-		friendlyName: 'Before helper test',
+		friendlyName: 'After helper test',
 
 
 		description: '',
@@ -20,7 +20,7 @@ module.exports = {
 
 
 		fn: async function (inputs, exits) {
-				console.log('beforeHelperTest works!');
+				console.log('afterHelperTest works!');
 
 				// All done.
 				return exits.success(true);
