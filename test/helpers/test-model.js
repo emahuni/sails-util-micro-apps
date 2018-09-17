@@ -1,8 +1,3 @@
-const chai = require('chai');
-const expect = chai.expect;
-const chalk = require('chalk');
-const _ = require('lodash');
-
 module.exports = async function testModel (modelName) {
 		let Model, ModelName = _.upperFirst(modelName);
 
