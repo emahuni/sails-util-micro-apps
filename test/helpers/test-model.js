@@ -1,4 +1,4 @@
-module.exports = async function testModel (modelName, attr = 'name') {
+module.exports = async function testModel (title, modelName, attr = 'name') {
 		let Model, ModelName = _.upperFirst(modelName);
 
 		before ( function () {
@@ -6,7 +6,7 @@ module.exports = async function testModel (modelName, attr = 'name') {
 				// sails.log.debug(`${modelName}  schema`, Model.schema);
 		});
 
-		context(`${ModelName} model ::`, async function () {
+		context(`${ModelName} model :: ${title}:`, async function () {
 				it(`has ${ModelName} model`, async function (){
 						expect(sails.models[modelName]).to.be.an('object');
 						expect(Model).to.be.an('object');
