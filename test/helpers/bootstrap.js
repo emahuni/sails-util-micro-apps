@@ -60,7 +60,7 @@ after(function (done) {
     // Lower Sails (if it successfully lifted)
     if (sails) {
 				// sails.log.debug('models:', util.inspect(sails.models));
-				// sails.log.debug('models:', util.inspect(sails.models));
+				sails.log.debug('helpers:', sails.helpers);
         return sails.lower(done);
     }
 
