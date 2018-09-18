@@ -9,5 +9,6 @@ module.exports = {
      */
     beforeCtrlTest: function (req, res) {
         sails.log.verbose('test method on BeforeController');
+        res.send(true);
     }
 };
