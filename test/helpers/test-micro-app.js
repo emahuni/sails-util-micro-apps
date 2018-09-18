@@ -19,4 +19,7 @@ module.exports = async function testMicroApp (title, mApp) {
 
     // let's test config
     testConfig(title, `${mApp}ConfigVal`);
+
+    // let's test controllers and actions
+    testController(title, `${mApp}ConfigVal`);
 }

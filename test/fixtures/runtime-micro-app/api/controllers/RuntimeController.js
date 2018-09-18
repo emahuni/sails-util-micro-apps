@@ -9,5 +9,6 @@ module.exports = {
      */
     runtimeCtrlTest: function (req, res) {
         sails.log.verbose('test method on RuntimeController');
+        res.send(true);
     }
 };
