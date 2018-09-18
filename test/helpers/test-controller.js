@@ -1,16 +1,16 @@
 const _ = require('lodash');
 
 module.exports = async function testController (title, controllerName) {
-		context(`${controllerName} controller :: ${title}:`, async function () {
-				it(`has injected ${controllerName}Controller action ${controllerName}CtrlTest`, async function (){
-						  expect(sails._actions[`${controllerName}/${controllerName}CtrlTest`]).to.be.an('object');
-						// sails.log.debug(sails.controllers);
+				// the sails._actions dictionary uses lowercase of actions definitions, so prepare for that
+				let controllername = controllerName.toLowerCase();
+				let action = `${controllername}/${controllername}ctrltest`;
+
+
+				context(`${controllerName} controller :: ${title}:`, async function () {
+								it(`has injected ${controllerName}Controller action ${controllerName}CtrlTest`, async function (){
+												// sails.log.debug('action: ', action);
+												expect(sails._actions[action]).to.be.a('function');
+												// sails.log.debug(sails._actions);
+								});
 				});
-
-		// 		it(`can invoke controller action for ${controllerName}Controller`, async function (){
-		// 				let ret = await global[_.upperFirst(controllerName)][`${controllerName}Test`]();
-
-		// 				expect(ret).to.be.ok;
-		// 		});
-		});
 }
