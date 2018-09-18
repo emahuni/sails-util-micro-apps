@@ -9,5 +9,6 @@ module.exports = {
      */
     afterCtrlTest: function (req, res) {
         sails.log.verbose('test method on AfterController');
+        res.send(true);
     }
 };
