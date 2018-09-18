@@ -15,16 +15,16 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
 				});
 
     // now test the injections
-    context('Models Injection ::', async function () {
-				    context(`Before ORM Hook - Micro App injection ::`, async function () {
+    context('Micro-Apps Injection Tests ::', async function () {
+				    context(`Before ORM Hook - Micro-App injection ::`, async function () {
 						      testMicroApp('Injected using the parent module path', 'before');
 				    });
 
-				    context(`After ORM Hook - Micro App injection ::`, async function () {
+				    context(`After ORM Hook - Micro-App injection ::`, async function () {
 						      testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
 				    });
 
-				    context(`Runtime Micro App injection ::`, async function () {
+				    context(`Runtime Micro-App injection ::`, async function () {
 						      before(async function (){
 								        const loader = require('../')(sails, __dirname + '/fixtures/runtime-micro-app');
 
