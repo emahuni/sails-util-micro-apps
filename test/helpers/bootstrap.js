@@ -62,7 +62,8 @@ after(function (done) {
 				// sails.log.debug('models:', util.inspect(sails.models));
 				// sails.log.debug('helpers:', sails.helpers);
 				// sails.log.debug('services:', sails.services);
-				    sails.log.debug('controller actions:', util.inspect(sails._actions));
+				    // sails.log.debug('controller actions:', util.inspect(sails._actions));
+				sails.log.debug('explicit routes:', sails.router.explicitRoutes);
         return sails.lower(done);
     }
 
