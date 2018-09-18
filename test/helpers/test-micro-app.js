@@ -4,6 +4,8 @@ const testService = require('./test-service');
 const testConfig = require('./test-config');
 const testController = require('./test-controller');
 const testAction = require('./test-action');
+const testRoute = require('./test-route');
+
 
 module.exports = async function testMicroApp (title, mApp) {
 		  // let's test the micro app's  model if it's working properly as expected
@@ -27,4 +29,7 @@ module.exports = async function testMicroApp (title, mApp) {
 
 				// let's test action
     testAction(title, `${mApp}`);
+
+				// let's test routes
+				testRoute(title,  `${mApp}`);
 }
