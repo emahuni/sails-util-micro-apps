@@ -9,26 +9,32 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
         return true;
     });
 
-    context('Models Injection ::', async function () {
-				context(`Before ORM Hook - Micro App injection ::`, async function () {
-						testMicroApp('Injected using the parent module path', 'before');
+    // this tests the app api that we know was loaded normally, nothing should fail otherwise we have broken tests in testMicroApp
+    context(`App API control test - none under here should fail, otherwise the test is broken::`, async function () {
+						  testMicroApp('makes sure that the tests are working as expected', 'app');
 				});
 
-				context(`After ORM Hook - Micro App injection ::`, async function () {
-						testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
-				});
+    // now test the injections
+    context('Micro-Apps Injection Tests ::', async function () {
+				    context(`Before ORM Hook - Micro-App injection ::`, async function () {
+						      testMicroApp('Injected using the parent module path', 'before');
+				    });
 
-				context(`Runtime Micro App injection ::`, async function () {
-						before(async function (){
-								const loader = require('../')(sails, __dirname + '/fixtures/runtime-micro-app');
+				    context(`After ORM Hook - Micro-App injection ::`, async function () {
+						      testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
+				    });
 
-								loader.configure();
+				    context(`Runtime Micro-App injection ::`, async function () {
+						      before(async function (){
+								        const loader = require('../')(sails, __dirname + '/fixtures/runtime-micro-app');
 
-								loader.adapt();
-						});
+								        loader.configure();
 
-						testMicroApp(`Injected by using given loader path)`, 'runtime');
-				});
+								        loader.adapt();
+						      });
+
+						      testMicroApp(`Injected by using given loader path)`, 'runtime');
+				    });
     });
 
 });
