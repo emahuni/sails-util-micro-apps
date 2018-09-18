@@ -8,7 +8,7 @@ module.exports = async function testMicroApp (title, mApp) {
 		  testModel(title, mApp);
 
 		  // let's test extend capability of hook on micro app against the House main app model
-		  testModel(title, 'house', `${mApp}Ext`);
+		  testModel(title, 'app', `${mApp}Ext`);
 
 		  // let's test helpers
 		  testHelper(title, `${mApp}HelperTest`);
