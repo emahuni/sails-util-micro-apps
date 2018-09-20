@@ -7,29 +7,29 @@ const testAction = require('./test-action');
 const testRoute = require('./test-route');
 
 
-module.exports = async function testMicroApp (title, mApp) {
-		  // let's test the micro app's  model if it's working properly as expected
-		  testModel(title, mApp);
+module.exports = async function testMicroApp (mApp) {
+				// let's test the micro app's  model if it's working properly as expected
+		  testModel('test newly injected model', mApp);
 
 		  // let's test extend capability of hook on micro app against the House main app model
-		  testModel(title, 'app', `${mApp}Ext`);
+		  testModel('test model extending and overridding capability', 'app', `${mApp}Ext`);
 
 		  // let's test helpers
-		  testHelper(title, `${mApp}HelperTest`);
+		  testHelper('test newly injected helpers', `${mApp}HelperTest`);
 		  // testHelper(title, `fooBar`);
 
 				// let's test services
-				testService(title, `${mApp}Service`);
+				testService('test newly injected services', `${mApp}Service`);
 
     // let's test config
-    testConfig(title, `${mApp}ConfigVal`);
+    testConfig('test newly injected config', `${mApp}ConfigVal`);
 
     // let's test controller
-    testController(title, `${mApp}`);
+    testController('test newly injected controller', `${mApp}`);
 
 				// let's test action
-    testAction(title, `${mApp}`);
+    testAction('test newly injected standalone action', `${mApp}`);
 
 				// let's test routes
-				testRoute(title,  `${mApp}`);
+				testRoute('test newly injected routes',  `${mApp}`);
 }

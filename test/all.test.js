@@ -10,21 +10,21 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
     });
 
     // this tests the app api that we know was loaded normally, nothing should fail otherwise we have broken tests in testMicroApp
-    context(`App API control test - none under here should fail, otherwise the test is broken::`, async function () {
-						  testMicroApp('makes sure that the tests are working as expected', 'app');
+    context(`App API control test - none under here should fail, otherwise the failing test suite is broken ::`, async function () {
+						  testMicroApp('app');
 				});
 
     // now test the injections
     context('Micro-Apps Injection Tests ::', async function () {
-				    context(`Before ORM Hook - Micro-App injection ::`, async function () {
-						      testMicroApp('Injected using the parent module path', 'before');
+				    context(`Before ORM Hook - Micro-App injection :: Injected using the parent module path:`, async function () {
+						      testMicroApp('before');
 				    });
 
-				    context(`After ORM Hook - Micro-App injection ::`, async function () {
-						      testMicroApp('Injected using a path given to configure and adapt in the requiring module', 'after');
+				    context(`After ORM Hook - Micro-App injection :: Injected using a path given to configure and adapt in the requiring module:`, async function () {
+						      testMicroApp('after');
 				    });
 
-				    context(`Runtime Micro-App injection ::`, async function () {
+				    context(`Runtime Micro-App injection :: Injected by using given loader path:`, async function () {
 						      before(async function (){
 								        const loader = require('../')(sails, __dirname + '/fixtures/runtime-micro-app');
 
@@ -33,7 +33,7 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
 								        loader.adapt();
 						      });
 
-						      testMicroApp(`Injected by using given loader path)`, 'runtime');
+						      testMicroApp('runtime');
 				    });
     });
 
