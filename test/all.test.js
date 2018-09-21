@@ -15,7 +15,7 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
 				});
 
     // now test the injections
-    context('Micro-Apps Injection Tests ::', async function () {
+    context.skip('Micro-Apps Injection Tests ::', async function () {
 				    context(`Before ORM Hook - Micro-App injection :: Injected using the parent module path:`, async function () {
 						      testMicroApp('before');
 				    });

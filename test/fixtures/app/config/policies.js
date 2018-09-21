@@ -19,9 +19,9 @@ module.exports.policies = {
 				// '*': true,
 				AppController:{
 								// test controller allowing
-								'app-ctrl-policy-allow': 'allowApp',
+								'appCtrlPolicyAllow': 'allowApp',
 								// test controller denying
-								'app-ctrl-policy-deny': 'denyApp',
+								'appCtrlPolicyDeny': 'denyApp',
 				},
 
 				// standalone actions

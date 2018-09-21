@@ -35,7 +35,11 @@ module.exports = async function testMicroApp (mApp) {
 				// let's test routes
 				testRoute('test newly injected routes',  `${mApp}`);
 
-				// let's test policies
-				testPolicy('test newly injected policies (allow)', `${mApp.toLowerCase()}action/act-policy-allow`, `allow${_.upperFirst(mApp)}`);
-				testPolicy('test newly injected policies (deny)', `${mApp.toLowerCase()}action/act-policy-deny`, `deny${_.upperFirst(mApp)}`);
+				// let's test action policies
+				testPolicy('test newly injected standalone action policies (allow)', mApp, `action`,  `allow`);
+				testPolicy('test newly injected standalone action policies (deny)', mApp, `action`, `deny`);
+
+				// let's test controller action policies
+				testPolicy('test newly injected controller action policies (allow)', mApp, `controller`, `allow`);
+				testPolicy('test newly injected controller action policies (deny)', mApp, `controller`, `deny`);
 }
