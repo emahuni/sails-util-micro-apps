@@ -11,4 +11,13 @@ module.exports = {
         sails.log.verbose('test method on AppController');
         res.send(true);
     }
+
+    appCtrlPolicyAllow: function (req, res) {
+        sails.log.verbose('test app allow policy');
+        res.send(true);
+    }
+    appCtrlPolicyDeny: function (req, res) {
+        sails.log.verbose('test app deny policy');
+        res.send(true);
+    }
 };
