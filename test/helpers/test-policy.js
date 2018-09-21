@@ -1,11 +1,12 @@
 const _ = require('lodash');
 
-module.exports = async function testPolicy (title, action, policy, route) {
-				let actionPolicy = `${action}/${policy}`;
+module.exports = async function testPolicy (title, action, policy) {
+				let route = `/${action}`;
 
-				context(`${actioPolicy} policy :: ${title}:`, async function () {
-								it(`has injected test action policy ${actionPolicy} into config policies`, async function (){
-												expect(sails.config.policies[actionPolicy]).to.be.eql(policy);
+				context(`${action} action for policy ${policy} :: ${title}:`, async function () {
+								it(`has injected test action ${action} policy ${policy} into config policies`, async function (){
+												sails.log.debug('sails.config.policies: ', sails.config.policies);
+												expect(sails.config.policies[action][0]).to.be.eql(policy);
 								});
 
 								if (policy.includes('allow')){
@@ -21,9 +22,10 @@ module.exports = async function testPolicy (title, action, policy, route) {
 								} else {
 												it(`can deny test action ${action} for policy ${policy}`, function (done){
 																sails.request(route, (err, res, body)=>{
-																				if(err) done(err);
+																				sails.log.debug('err: ', err);
+																				//if(err) done(err);
 
-																				expect(res.statusCode).to.be.eql(403);
+																				expect(err.status).to.be.eql(403);
 
 																				done();
 																})

@@ -29,7 +29,8 @@ module.exports.routes = {
     '/app/ctrltest': 'AppController.appCtrlTest',
     '/app/actiontest': 'appaction/test-action',
 
-
+				'/appaction/act-policy-allow': 'appaction/act-policy-allow',
+				'/appaction/act-policy-deny': 'appaction/act-policy-deny',
 				//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
 				//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
 				//  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
