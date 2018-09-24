@@ -10,5 +10,14 @@ module.exports = {
     afterCtrlTest: function (req, res) {
         sails.log.verbose('test method on AfterController');
         res.send(true);
-    }
+    },
+
+    afterCtrlPolicyAllow: function (req, res) {
+        sails.log.verbose('test after allow policy');
+        res.send(true);
+    },
+    afterCtrlPolicyDeny: function (req, res) {
+        sails.log.verbose('test after deny policy');
+        res.send(true);
+    },
 };
