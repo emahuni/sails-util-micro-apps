@@ -1,6 +1,6 @@
 /**
  * @fileOverview
- * @name test-action.js
+ * @name act-policy-deny.js
  * @author Emmanuel Mahuni <emahuni@gmail.com>
  * @license MIT
  */
