@@ -10,5 +10,14 @@ module.exports = {
     runtimeCtrlTest: function (req, res) {
         sails.log.verbose('test method on RuntimeController');
         res.send(true);
-    }
+    },
+
+    runtimeCtrlPolicyAllow: function (req, res) {
+        sails.log.verbose('test runtime allow policy');
+        res.send(true);
+    },
+    runtimeCtrlPolicyDeny: function (req, res) {
+        sails.log.verbose('test runtime deny policy');
+        res.send(true);
+    },
 };

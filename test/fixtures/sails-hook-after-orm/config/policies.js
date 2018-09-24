@@ -1,6 +1,30 @@
 /**
- * Created by Emmanuel Mahuni. MIT 2018
+ * Policy Mappings
+ * (sails.config.policies)
+ *
+ * Policies are simple functions which run **before** your actions.
+ *
+ * For more information on configuring policies, check out:
+ * https://sailsjs.com/docs/concepts/policies
  */
+
 module.exports.policies = {
-//    '*': ['after-ctrl-test']
+				/***************************************************************************
+					*                                                                          *
+					* Default policy for all controllers and actions, unless overridden.       *
+					* (`true` allows public access)                                            *
+					*                                                                          *
+					***************************************************************************/
+
+				// '*': true,
+				AfterController:{
+								// test controller allowing
+								'afterCtrlPolicyAllow': 'allowAfter',
+								// test controller denying
+								'afterCtrlPolicyDeny': 'denyAfter',
+				},
+
+				// standalone actions
+				'afteraction/act-policy-allow': 'allowAfter',
+				'afteraction/act-policy-deny': 'denyAfter',
 };

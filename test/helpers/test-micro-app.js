@@ -5,7 +5,9 @@ const testConfig = require('./test-config');
 const testController = require('./test-controller');
 const testAction = require('./test-action');
 const testRoute = require('./test-route');
+const testPolicy = require('./test-policy');
 
+const _ = require('lodash');
 
 module.exports = async function testMicroApp (mApp) {
 				// let's test the micro app's  model if it's working properly as expected
@@ -32,4 +34,12 @@ module.exports = async function testMicroApp (mApp) {
 
 				// let's test routes
 				testRoute('test newly injected routes',  `${mApp}`);
+
+				// let's test action policies
+				testPolicy('test newly injected standalone action policies (allow)', mApp, `action`,  `allow`);
+				testPolicy('test newly injected standalone action policies (deny)', mApp, `action`, `deny`);
+
+				// let's test controller action policies
+				testPolicy('test newly injected controller action policies (allow)', mApp, `controller`, `allow`);
+				testPolicy('test newly injected controller action policies (deny)', mApp, `controller`, `deny`);
 }
