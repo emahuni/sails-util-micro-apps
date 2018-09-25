@@ -46,7 +46,7 @@ module.exports = function(sails, hook_dirname) {
           if (!dir) {
             dir = {
               config: hook_dirname + '/config',
-              policies: hook_dirname + '/policies'
+              policies: hook_dirname + '/api/policies'
             };
           }
           this.injectAll(dir);
