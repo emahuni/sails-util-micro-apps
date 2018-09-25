@@ -10,6 +10,7 @@ const _ = require('lodash');
 const buildDictionary = require('sails-build-dictionary');
 
 module.exports = function (cb) {
+  // sails.log.debug('policies paths: ', sails.config.paths.policies);
   async.reduce(sails.config.paths.policies, {}, function (prev, curr, callback) {
     buildDictionary.optional({
       dirname: curr,
@@ -19,6 +20,7 @@ module.exports = function (cb) {
       keepDirectoryPath: true
     }, (err, policies) => {
       if (err) callback(err);
+      sails.log.debug('policies: ', policies);
 
       callback(null, _.merge(prev, policies));
     });
