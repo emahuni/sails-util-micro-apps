@@ -1,8 +1,8 @@
 /**
- * Created by jaumard on 12/05/2015.
+ * Emmanuel Mahuni (c) 2018 MIT
  */
-var _ = require('lodash');
- 
+const _ = require('lodash');
+
 module.exports = {
     _bindToSails: function (sails, modules, cb) {
         _.each(modules, function (module) {
@@ -14,4 +14,4 @@ module.exports = {
 
         return cb(null, modules);
     }
-};
+}

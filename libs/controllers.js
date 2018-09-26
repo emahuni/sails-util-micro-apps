@@ -4,58 +4,82 @@
 
 const async = require('async');
 const _ = require('lodash');
-const buildDictionary = require('sails-build-dictionary');
+const includeAll = require('include-all');
 const utils = require(__dirname + '/utils');
+const util = require('util');
 
 module.exports = function (sails, dir, cb) {
-  async.waterfall([// Load controllers from the given directory
+  async.waterfall([
+    // Load controllers from the given directory
     function loadModulesFromDirectory (next) {
-      buildDictionary.optional({
+      includeAll.optional({
         dirname: dir,
-        filter: /(.+)Controller\.(js|coffee|litcoffee)$/,
-        flattenDirectories: true,
+        filter: /(.+)\.(js|coffee|litcoffee)$/,
+        flatten: true,
         keepDirectoryPath: true,
-        replaceExpr: /Controller/
+        replaceExpr: /Controller/,
       }, next);
     },
 
     // Bind all controllers methods to sails
     function bindControllersToSails (modules, next) {
+      // sails.log('modules: ', util.inspect(modules));
       utils._bindToSails(sails, modules, next);
     },
 
     // Register controllers on the main "controllers" hook
     function registerControllers (modules, next) {
-      // Extends sails.controllers with new ones
-      sails.controllers = {...modules, ...sails.controllers};
-
       // Loop through each controllers and register them
       _.each(modules, function (controller, controllerId) {
-        // Register this controller's actions
-        _.each(controller, function (action, actionId) {
-          // actionid is always lowercase
-          actionId = actionId.toLowerCase();
-          // If the action is set to `false`, explicitly disable (remove) it
-          if (action === false) {
-            delete sails.hooks.userhooks.middleware[controllerId][actionId];
-            return;
+        // sails.log.debug('controller:', controller, 'controllerId: ', controllerId);
+        sails.log.debug('controller:', util.inspect(controller), 'controllerId: ', controller.identity);
+
+        // cater for standalone actions (machine-pack)
+        if (controller.fn && controller.globalId && controller.identity){
+          // this is a standalone action
+          sails.log.verbose('Micro-Apps: register standalone action: ', controller.identity);
+
+          // If the action function is set to `false`, explicitly disable (remove) it
+          if (controller.fn === false) {
+              delete sails._actions[controller.identity];
+              return;
           }
 
-          // Do not register string or boolean actions
-          if (_.isString(action) || _.isBoolean(action)) return;
+          // register the action
+          sails.registerAction(controller, controller.identity);
 
-          // LastCallsController.getActiveOrder
-          sails.registerAction(action, [controllerId, actionId].join('/'));
+        } else  if (controller.globalId && controller.identity) {
+          // this is a traditional controller
+          sails.log.verbose('Micro-Apps: register controller: ', controller.identity);
 
-          /*           // Register controller's action on the main "controllers" hook
-                       action._middlewareType = 'ACTION: ' + controllerId + '/' + actionId
-                       sails._actions[controllerId] = sails._actions[controllerId] || {}
-                       sails._actions[controllerId][actionId] = true */
-        });
+          // Register this controller's actions
+          _.each(controller, function (action, actionId) {
+            // create the proper actionid and make sure it is lowercase
+            actionId = [controller.identity, actionId.toLowerCase()].join('/');
+
+            // If the action is set to `false`, explicitly disable (remove) it
+            if (action === false) {
+              delete sails._actions[actionId];
+              return;
+            }
+
+            // Do not register anything that is not a function
+            if (!_.isFunction(action)) return;
+
+            sails.log.verbose('Micro-Apps: register controller action: ', util.inspect(action), ' actionId: ', actionId);
+
+            // register the action
+            sails.registerAction(action, actionId);
+          });
+        } else {
+          // throw error, this is not a controller or standalone action
+        }
       });
 
       return next();
-    }], (err) => {
-      cb(err);
-    });
+    },
+
+  ], (err) => {
+    cb(err);
+  });
 }
