@@ -6,7 +6,6 @@ const async = require('async');
 const _ = require('lodash');
 const includeAll = require('include-all');
 const utils = require(__dirname + '/utils');
-const util = require('util');
 
 module.exports = function (sails, dir, cb) {
   async.waterfall([
@@ -31,8 +30,7 @@ module.exports = function (sails, dir, cb) {
     function registerControllers (modules, next) {
       // Loop through each controllers and register them
       _.each(modules, function (controller, controllerId) {
-        // sails.log.debug('controller:', controller, 'controllerId: ', controllerId);
-        sails.log.debug('controller:', util.inspect(controller), 'controllerId: ', controller.identity);
+        // sails.log.debug('controller:', controller, 'controllerId: ', controller.identity);
 
         // cater for standalone actions (machine-pack)
         if (controller.fn && controller.globalId && controller.identity){
@@ -66,7 +64,7 @@ module.exports = function (sails, dir, cb) {
             // Do not register anything that is not a function
             if (!_.isFunction(action)) return;
 
-            sails.log.verbose('Micro-Apps: register controller action: ', util.inspect(action), ' actionId: ', actionId);
+            // sails.log.verbose('Micro-Apps: register controller action: ', action, ' actionId: ', actionId);
 
             // register the action
             sails.registerAction(action, actionId);
