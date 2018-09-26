@@ -20,7 +20,7 @@ module.exports = function (cb) {
       keepDirectoryPath: true
     }, (err, policies) => {
       if (err) callback(err);
-      sails.log.debug('policies: ', policies);
+      // sails.log.debug('policies: ', policies);
 
       callback(null, _.merge(prev, policies));
     });
