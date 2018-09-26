@@ -2,10 +2,10 @@
  * Load controllers from a directory into a Sails app
  */
 
-const async = require('async')
-const _ = require('lodash')
-const buildDictionary = require('sails-build-dictionary')
-const utils = require(__dirname + '/utils')
+const async = require('async');
+const _ = require('lodash');
+const buildDictionary = require('sails-build-dictionary');
+const utils = require(__dirname + '/utils');
 
 module.exports = function (sails, dir, cb) {
   async.waterfall([// Load controllers from the given directory
@@ -16,46 +16,46 @@ module.exports = function (sails, dir, cb) {
         flattenDirectories: true,
         keepDirectoryPath: true,
         replaceExpr: /Controller/
-      }, next)
+      }, next);
     },
 
-        // Bind all controllers methods to sails
+    // Bind all controllers methods to sails
     function bindControllersToSails (modules, next) {
-      utils._bindToSails(sails, modules, next)
+      utils._bindToSails(sails, modules, next);
     },
 
-        // Register controllers on the main "controllers" hook
+    // Register controllers on the main "controllers" hook
     function registerControllers (modules, next) {
-            // Extends sails.controllers with new ones
-      sails.controllers = {...modules, ...sails.controllers}
+      // Extends sails.controllers with new ones
+      sails.controllers = {...modules, ...sails.controllers};
 
-            // Loop through each controllers and register them
+      // Loop through each controllers and register them
       _.each(modules, function (controller, controllerId) {
         // Register this controller's actions
         _.each(controller, function (action, actionId) {
           // actionid is always lowercase
-          actionId = actionId.toLowerCase()
+          actionId = actionId.toLowerCase();
           // If the action is set to `false`, explicitly disable (remove) it
           if (action === false) {
-            delete sails.hooks.userhooks.middleware[controllerId][actionId]
-            return
+            delete sails.hooks.userhooks.middleware[controllerId][actionId];
+            return;
           }
 
           // Do not register string or boolean actions
-          if (_.isString(action) || _.isBoolean(action)) return
+          if (_.isString(action) || _.isBoolean(action)) return;
 
           // LastCallsController.getActiveOrder
-          sails.registerAction(action, [controllerId, actionId].join('/'))
+          sails.registerAction(action, [controllerId, actionId].join('/'));
 
-         /*           // Register controller's action on the main "controllers" hook
-          action._middlewareType = 'ACTION: ' + controllerId + '/' + actionId
-          sails._actions[controllerId] = sails._actions[controllerId] || {}
-          sails._actions[controllerId][actionId] = true */
-        })
-      })
+          /*           // Register controller's action on the main "controllers" hook
+                       action._middlewareType = 'ACTION: ' + controllerId + '/' + actionId
+                       sails._actions[controllerId] = sails._actions[controllerId] || {}
+                       sails._actions[controllerId][actionId] = true */
+        });
+      });
 
-      return next()
+      return next();
     }], (err) => {
-    cb(err)
-  })
+      cb(err);
+    });
 }
