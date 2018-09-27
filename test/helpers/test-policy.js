@@ -27,10 +27,10 @@ module.exports = async function testPolicy (title, _action, type, check) {
     } else {
       it(`can deny test action ${actionPolicy} for policy ${policy} on route ${route}`, function (done){
         sails.request(route, (err, res, body)=>{
-          sails.log.debug('err: ', err);
-          sails.log.debug('body: ', body);
-          sails.log.debug('res: ', res);
-          //if(err) done(err);
+          // sails.log.debug('err: ', err);
+          // sails.log.debug('body: ', body);
+          // sails.log.debug('res: ', res);
+          if(err) done(err);
 
           expect(err.status).to.be.eql(403);
 

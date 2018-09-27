@@ -10,7 +10,7 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
   });
 
   // this tests the app api that we know was loaded normally, nothing should fail otherwise we have broken tests in testMicroApp
-  context.only(`App API control test - none under here should fail, otherwise the failing test suite is broken ::`, async function () {
+  context(`App API control test - none under here should fail, otherwise the failing test suite is broken ::`, async function () {
     testMicroApp('app');
   });
 
