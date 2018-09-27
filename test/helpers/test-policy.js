@@ -30,8 +30,8 @@ module.exports = async function testPolicy (title, _action, type, check) {
           // sails.log.debug('err: ', err);
           // sails.log.debug('body: ', body);
           // sails.log.debug('res: ', res);
-          if(err) done(err);
 
+          expect(err).not.to.be.undefined;
           expect(err.status).to.be.eql(403);
 
           done();
