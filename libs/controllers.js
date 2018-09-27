@@ -8,6 +8,8 @@ const includeAll = require('include-all');
 const utils = require(__dirname + '/utils');
 
 module.exports = function (sails, dir, cb) {
+  sails.log.verbose(`Micro-Apps: Injecting controllers from dir: `, dir);
+
   async.waterfall([
     // Load controllers from the given directory
     function loadModulesFromDirectory (next) {

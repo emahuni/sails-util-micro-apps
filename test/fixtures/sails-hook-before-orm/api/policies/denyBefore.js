@@ -6,7 +6,6 @@
  * @help        :: http://sailsjs.org/#!/documentation/concepts/Policies
  */
 module.exports = function(req, res, next) {
-
-				return res.forbidden();
-
+  sails.log.debug('deny before route pointing to this policy denyBefore.js');
+  return res.forbidden();
 };

@@ -65,8 +65,8 @@ after(function (done) {
     // sails.log.debug('services:', sails.services);
     sails.log.debug('policies:', sails.config.policies);
     sails.log.debug('explicit routes:', sails.router.explicitRoutes);
-    sails.log.debug('controller actions:', sails._actions);
-    sails.log.debug('hooks.userhooks.middleware: ', sails.hooks.userhooks.middleware);
+    // sails.log.debug('controller actions:', util.inspect(sails._actions));
+    // sails.log.debug('hooks.userhooks.middleware: ', sails.hooks.userhooks.middleware);
 
     return sails.lower(done);
   }
