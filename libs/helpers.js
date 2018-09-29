@@ -2,30 +2,48 @@
  * Load helpers from a directory into a Sails app
  */
 
-var async = require('async');
-var _ = require('lodash');
-var buildDictionary = require('sails-build-dictionary');
+const _ = require('lodash');
+const loadHelpers = require('sails/lib/hooks/helpers/private/load-helpers');
 
 module.exports = function (sails, dir, cb) {
-    async.waterfall([function loadHelpersFromDirectory(next) {
-        buildDictionary.optional({
-            dirname: dir,
-            filter: /^([^.]+)\.(js|coffee|litcoffee)$/,
-            replaceExpr: /^.*\//,
-            flattenDirectories: true
-        }, next);
+  // temp sails app
+  // let tmpSails = {
+  //   config: {
+  //     helpers: {},
+  //     paths: {},
+  //   },
+  // };
 
-    }, function injectHelpersIntoSails(modules, next) {
-        sails.helpers = _.merge(modules || {}, sails.helpers || {});
-        
-        if (sails.config.globals.helpers) {
-            _.each(modules, function (helper, helperId) {
-                global[helper.globalId] = helper;
-            });
-        }
+  // _.merge(tmpSails.config.helpers, sails.config.helpers);
+  // tmpSails.config.paths.helpers = dir;
 
-        return next(null);
-    }], function (err) {
-        return cb(err);
-    });
-};
+  // sails.log.debug('tmpSails: ', tmpSails);
+
+  // tmpSails.log = sails.log;
+
+  // backup existing helpers info
+  let helpers = _.cloneDeep(sails.helpers),
+      helpersPath = sails.config.paths.helpers;
+
+  // setup our temp helpers staging area
+  sails.helpers = {}; // clear em
+  sails.config.paths.helpers = dir;
+
+  // load requested helpers
+  loadHelpers(sails, function(err) {
+    // 1st merge and restore backups coz if there is an error at least these things should be as they were
+    sails.config.paths.helpers = helpersPath;
+    let helpersNew = _.cloneDeep(sails.helpers);
+    sails.helpers = helpers;
+
+    // now check the error if it is there
+    if (err) { return cb(err); }
+
+    _.merge(sails.helpers, helpersNew); // overwrite the old ones if so desired
+
+    // sails.log.debug('after sails helpers injection: ', sails.helpers);
+    // sails.log.debug('helpers path: ', sails.config.paths.helpers);
+
+    return cb();
+  });
+}
