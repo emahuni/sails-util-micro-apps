@@ -30,7 +30,8 @@ module.exports = function (sails) {
             loader.adapt({
                 controllers: __dirname + '/api/controllers', // Path to your hook's controllers
                 models: __dirname + '/api/models', // Path to your hook's models
-                services: __dirname + '/api/services' // Path to your hook's services
+              helpers: __dirname + '/api/helpers', // Path to your hook's helpers
+              services: __dirname + '/api/services', // Path to your hook's services
             }, function (err) {
                 return next(err);
             });
