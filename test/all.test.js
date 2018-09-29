@@ -24,6 +24,12 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
       testMicroApp('after');
     });
 
+    context(`Throw when injection is done at runtime (sails.isLifted) :: to be removed once runtime injection has been fixed:`, async function () {
+      it(`throws when used at runtime`, async function (){
+        expect(()=>require('../')(sails, __dirname + '/fixtures/runtime-micro-app')).to.throw();
+      });
+    });
+
     // let's not do these test for now, the feature is not ready.
     context.skip(`Runtime Micro-App injection :: Injected by using given loader path (sails.isLifted):`, async function () {
       before(async function (){
