@@ -27,7 +27,8 @@ before(function (done) {
     port: 1300,
     log: {
       // level: 'debug',
-      level: 'verbose',
+      // level: 'verbose',
+      level: 'silly',
       custom: console,
       inspect: false,
     },
