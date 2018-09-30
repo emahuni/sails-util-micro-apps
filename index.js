@@ -22,6 +22,10 @@ module.exports = function(sails, hook_dirname) {
   const Loader = {
         defaults: {},
 
+        injectHooks: function(dir, cb) {
+          require(__dirname + '/libs/hooks')(sails, dir, cb);
+        },
+
         injectPolicies: function(dir) {
           require(__dirname + '/libs/policies')(sails, dir);
         },
@@ -45,10 +49,11 @@ module.exports = function(sails, hook_dirname) {
           require(__dirname + '/libs/helpers')(sails, dir, cb);
         },
 
-        // Inject config and policies synchronously into the Sails app
+        // Inject hooks, config and policies synchronously into the Sails app
         configure: function(dir) {
           if (!dir) {
             dir = {
+              hooks: hook_dirname,
               config: hook_dirname + '/config',
               policies: hook_dirname + '/api/policies'
             };
@@ -56,7 +61,7 @@ module.exports = function(sails, hook_dirname) {
           this.injectAll(dir);
         },
 
-        // Inject models, controllers & services asynchronously into the Sails app
+        // Inject models, controllers, helpers & services asynchronously into the Sails app
         inject: function(dir, next) {
           sails.log.debug('hook dirname: ', hook_dirname);
           // No parameters or only a callback (function) as first parameter
@@ -131,6 +136,12 @@ module.exports = function(sails, hook_dirname) {
                   return next(null);
                 });
               };
+
+          // we should add dependant hooks early during config before hooks are initialized
+          if (dir.hooks) {
+            self.injectHooks(dir.hooks);
+            sails.log.info('Micro-app-loader: Hooks loaded from ' + dir.hooks + '.');
+          }
 
           if (dir.policies) {
             self.injectPolicies(dir.policies);
