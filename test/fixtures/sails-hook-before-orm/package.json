@@ -14,7 +14,8 @@
   ],
   "dependencies": {
     "sails": "~1.0.2",
-    "sails-util-micro-apps": "file:../.."
+    "sails-util-micro-apps": "file:../..",
+    "sails-hook-before-hook-test": "this package.json will never be used for installation coz it's for sails to go thru and use installable hooks only"
   },
   "sails": {
     "isHook": true
