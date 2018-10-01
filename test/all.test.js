@@ -32,7 +32,7 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
     context(`AfterORM Installable Hook - Micro-App injection :: Injected using a path given to configure and adapt in the requiring module:`, async function () {
       testMicroApp('after');
 
-      context.skip(`AfterHook Installed Hook - Micro-App injection :: Injected by installed hook in hook-injected Micro-App:`, async function () {
+      context(`AfterHook Installed Hook - Micro-App injection :: Injected by installed hook in hook-injected Micro-App:`, async function () {
         testMicroApp('afterHook');
       });
     });
