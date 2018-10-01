@@ -26,9 +26,9 @@ before(function (done) {
   Sails().load({
     port: 1300,
     log: {
-      // level: 'debug',
+      level: 'debug',
       // level: 'verbose',
-      level: 'silly',
+      // level: 'silly',
       custom: console,
       inspect: false,
     },
