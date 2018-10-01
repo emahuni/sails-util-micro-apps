@@ -1,0 +1,20 @@
+{
+  "name": "sails-app",
+  "version": "0.1.0",
+  "description": "Test Sails app for sails-util-micro-apps hooks loading",
+  "main": "index.js",
+  "author": "Emmanuel Mahuni",
+  "keywords": [
+    "sails",
+    "sails.js",
+    "sails-hook",
+    "loader",
+    "mvc",
+    "hook"
+  ],
+  "dependencies": {
+    "sails": "~1.0.2",
+    "sails-util-micro-apps": "file:../..",
+    "sails-hook-app-hook-test": "this package.json will never be used for installation coz it's for sails to go thru and use installable hooks only"
+  }
+}

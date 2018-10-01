@@ -12,16 +12,29 @@ describe('Sails-hook-micro-apps Hook tests #', function () {
   // this tests the app api that we know was loaded normally, nothing should fail otherwise we have broken tests in testMicroApp
   context(`App API control test - none under here should fail, otherwise the failing test suite is broken ::`, async function () {
     testMicroApp('app');
+
+    // this tests the app api that we know was loaded normally, nothing should fail otherwise we have broken tests in testMicroApp
+    context(`AppHook API (installed hook micro-app injection) control test:`, async function () {
+      testMicroApp('appHook');
+    });
   });
 
   // now test the injections
   context('Micro-Apps Injection Tests ::', async function () {
-    context(`Before ORM Hook - Micro-App injection :: Injected using the parent module path:`, async function () {
+    context(`BeforeORM Installable Hook - Micro-App injection :: Injected using the parent module path:`, async function () {
       testMicroApp('before');
+
+      context(`BeforeHook Installed Hook - Micro-App injection :: injected by installed hook in hook-injected Micro-App:`, async function () {
+        testMicroApp('beforeHook');
+      });
     });
 
-    context(`After ORM Hook - Micro-App injection :: Injected using a path given to configure and adapt in the requiring module:`, async function () {
+    context(`AfterORM Installable Hook - Micro-App injection :: Injected using a path given to configure and adapt in the requiring module:`, async function () {
       testMicroApp('after');
+
+      context(`AfterHook Installed Hook - Micro-App injection :: Injected by installed hook in hook-injected Micro-App:`, async function () {
+        testMicroApp('afterHook');
+      });
     });
 
     context(`Throw when injection is done at runtime (sails.isLifted) :: to be removed once runtime injection has been fixed:`, async function () {

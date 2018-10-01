@@ -3,7 +3,7 @@ const _ = require('lodash');
 module.exports = async function testPolicy (title, _action, type, check) {
   let policy = `${check}${_.upperFirst(_action)}`;
   let ctrl = type === 'action' ? `${_action.toLowerCase()}action`: `${_action.toLowerCase()}`;
-  let action = type === 'action' ? `act-policy-${check}`: `${_action}ctrlpolicy${check}`;
+  let action = type === 'action' ? `act-policy-${check}`: `${_action.toLowerCase()}ctrlpolicy${check}`;
   let route = `/${ctrl}/${action}`;
   let actionPolicy = `${ctrl}/${action}`;
 

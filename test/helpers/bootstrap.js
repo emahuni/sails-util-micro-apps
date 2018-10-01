@@ -26,8 +26,9 @@ before(function (done) {
   Sails().load({
     port: 1300,
     log: {
-      // level: 'debug',
-      level: 'verbose',
+      level: 'debug',
+      // level: 'verbose',
+      // level: 'silly',
       custom: console,
       inspect: false,
     },
@@ -61,6 +62,7 @@ after(function (done) {
   // Lower Sails (if it successfully lifted)
   if (sails) {
     // sails.log.debug('models:', util.inspect(sails.models));
+    // sails.log.debug('models:', _.keys(sails.models));
     // sails.log.debug('helpers:', sails.helpers);
     // sails.log.debug('services:', sails.services);
     // sails.log.debug('policies:', sails.config.policies);
