@@ -63,7 +63,7 @@ module.exports = function(sails, hook_dirname) {
 
     // Inject models, controllers, helpers & services asynchronously into the Sails app
     inject: function(dir, next) {
-      sails.log.debug('hook dirname: ', hook_dirname);
+      // sails.log.debug('hook dirname: ', hook_dirname);
       // No parameters or only a callback (function) as first parameter
       if ((typeof dir === 'function' || !dir) && !next) {
         var tmp = next;
@@ -138,7 +138,7 @@ module.exports = function(sails, hook_dirname) {
       };
 
 
-      sails.log.debug('dirs: ', dir);
+      // sails.log.debug('dirs: ', dir);
 
       // we should add dependant hooks early during config before hooks are initialized
       if (dir.hooks) {
