@@ -4,6 +4,8 @@
 
 Inject self-contained Micro-Apps into your Sails App using a hook. Each micro-app is a mini sails app that you can develop decoupled from your main apps, which you then inject using this util.
 
+>You can use [Micro App Generator: sails-generator-micro-app](https://npmjs.com/package/sails-generator-micro-app) to quickly generate an installable Micro-App.
+
 This approach allows you to make mini app's that you can reuse in larger apps, thereby adopting a micro-services architecture in Sails.
 
 ## Features & Recommendations
