@@ -46,7 +46,7 @@ module.exports = function (sails, dir, cb) {
           }
 
           // register the action
-          sails.registerAction(controller, controller.identity);
+          sails.registerAction(controller, controller.identity, true);
 
         } else  if (controller.globalId && controller.identity) {
           // this is a traditional controller
@@ -69,7 +69,7 @@ module.exports = function (sails, dir, cb) {
             // sails.log.verbose('Micro-Apps: register controller action: ', action, ' actionId: ', actionId);
 
             // register the action
-            sails.registerAction(action, actionId);
+            sails.registerAction(action, actionId, true);
           });
         } else {
           // throw error, this is not a controller or standalone action
